@@ -1,4 +1,4 @@
-package main
+package app
 
 import (
 	"net/http"
@@ -8,18 +8,18 @@ import (
 )
 
 // createTodo add a new todo
-func createTodo(c *gin.Context) {
+func CreateTodo(c *gin.Context) {
 	completed, _ := strconv.Atoi(c.PostForm("completed"))
-	todo := todoModel{Title: c.PostForm("title"), Completed: completed}
+	todo := TodoModel{Title: c.PostForm("title"), Completed: completed}
 
 	db.Save(&todo)
 	c.JSON(http.StatusCreated, gin.H{"status": http.StatusCreated, "message": "Todo item created successfully!", "resourceId": todo.ID})
 }
 
 // fetchAllTodo fetch all todos
-func fetchAllTodo(c *gin.Context) {
-	var todos []todoModel
-	var _todos []transformedTodo
+func FetchAllTodo(c *gin.Context) {
+	var todos []TodoModel
+	var _todos []TransformedTodo
 
 	db.Find(&todos)
 
@@ -36,14 +36,14 @@ func fetchAllTodo(c *gin.Context) {
 		} else {
 			completed = false
 		}
-		_todos = append(_todos, transformedTodo{ID: item.ID, Title: item.Title, Completed: completed})
+		_todos = append(_todos, TransformedTodo{ID: item.ID, Title: item.Title, Completed: completed})
 	}
 	c.JSON(http.StatusOK, gin.H{"status": http.StatusOK, "data": _todos})
 }
 
 // fetchSingleTodo fetch a single todo
-func fetchSingleTodo(c *gin.Context) {
-	var todo todoModel
+func FetchSingleTodo(c *gin.Context) {
+	var todo TodoModel
 	todoID := c.Param("id")
 
 	db.First(&todo, todoID)
@@ -60,13 +60,13 @@ func fetchSingleTodo(c *gin.Context) {
 		completed = false
 	}
 
-	_todo := transformedTodo{ID: todo.ID, Title: todo.Title, Completed: completed}
+	_todo := TransformedTodo{ID: todo.ID, Title: todo.Title, Completed: completed}
 	c.JSON(http.StatusOK, gin.H{"status": http.StatusOK, "data": _todo})
 }
 
 // updateTodo update a todo
-func updateTodo(c *gin.Context) {
-	var todo todoModel
+func UpdateTodo(c *gin.Context) {
+	var todo TodoModel
 	todoID := c.Param("id")
 
 	db.First(&todo, todoID)
@@ -83,8 +83,8 @@ func updateTodo(c *gin.Context) {
 }
 
 // deleteTodo remove a todo
-func deleteTodo(c *gin.Context) {
-	var todo todoModel
+func DeleteTodo(c *gin.Context) {
+	var todo TodoModel
 	todoID := c.Param("id")
 
 	db.First(&todo, todoID)

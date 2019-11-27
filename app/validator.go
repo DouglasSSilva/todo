@@ -1,9 +1,9 @@
-package main
+package app
 
 import "net/url"
 
-// validate a todoModel based on some rules
-func (t *todoModel) validate() url.Values {
+// Validate a tTodoModel based on some rules
+func (t *TodoModel) Validate() url.Values {
 	errs := url.Values{}
 
 	if t.Title == "" {

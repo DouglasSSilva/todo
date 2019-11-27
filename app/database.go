@@ -1,4 +1,4 @@
-package main
+package app
 
 import (
 	"github.com/jinzhu/gorm"
@@ -7,19 +7,19 @@ import (
 
 var db *gorm.DB
 
-type todoModel struct {
+type TodoModel struct {
 	gorm.Model
 	Title     string `db:"title" json:"title"`
 	Completed int    `db:"completed" json:"completed"`
 }
 
-type transformedTodo struct {
+type TransformedTodo struct {
 	ID        uint   `db:"id" json:"id"`
 	Title     string `db:"title" json:"title"`
 	Completed bool   `db:"completed" json:"completed"`
 }
 
-func init() {
+func Init() {
 	//open a db connection
 	var err error
 	db, err = gorm.Open("mysql", "root:root@tcp(172.17.0.2:3306)/todo?parseTime=true")
@@ -27,5 +27,5 @@ func init() {
 		panic("failed to connect database")
 	}
 	//Migrate the schema
-	db.AutoMigrate(&todoModel{})
+	db.AutoMigrate(&TodoModel{})
 }
