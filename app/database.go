@@ -19,13 +19,14 @@ type TransformedTodo struct {
 	Completed bool   `db:"completed" json:"completed"`
 }
 
-func Init() {
+func init() {
 	//open a db connection
 	var err error
-	db, err = gorm.Open("mysql", "root:root@tcp(172.17.0.2:3306)/todo?parseTime=true")
+	db, err = gorm.Open("mysql", "mysql", "root:root@tcp(172.17.0.2:3306)/todo?parseTime=true")
 	if err != nil {
 		panic("failed to connect database")
 	}
+
 	//Migrate the schema
 	db.AutoMigrate(&TodoModel{})
 }

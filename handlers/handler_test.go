@@ -1,9 +1,9 @@
-package main
+package handlers_test
 
 import (
 	"net/http"
 	"net/http/httptest"
-	"todo/app"
+	"todo/handlers"
 
 	// "net/http/httptest"
 	"testing"
@@ -12,10 +12,10 @@ import (
 )
 
 func TestGetTodo(t *testing.T) {
-	router := setupRouter()
+	router := handlers.SetupRouter()
 	w := httptest.NewRecorder()
 
-	req, err := http.NewRequest("GET", "localhost:8080/api/v1/todos/", nil)
+	req, err := http.NewRequest("GET", "/api/v1/todos", nil)
 	if err != nil {
 		t.Fatalf("Request was not created %v", err)
 	}
@@ -23,5 +23,5 @@ func TestGetTodo(t *testing.T) {
 	router.ServeHTTP(w, req)
 
 	assert.Equal(t, 200, w.Code)
-	app.FetchAllTodo()
+
 }
