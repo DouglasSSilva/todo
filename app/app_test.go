@@ -1,7 +1,15 @@
 package app_test
 
-import "testing"
+import (
+	"fmt"
+	"os"
+	"testing"
+)
 
 func TestMain(m *testing.M) {
-	m.Run()
+	fmt.Println("Starting tests")
+	exitVal := m.Run()
+	fmt.Println("Finishing tests")
+	os.Exit(exitVal)
+
 }

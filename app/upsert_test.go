@@ -43,6 +43,13 @@ func TestCreateTodo(t *testing.T) {
 			TotalErrors: 1,
 		},
 		{
+			Name:        "empty error",
+			Title:       "",
+			Completed:   0,
+			Status:      http.StatusInternalServerError,
+			TotalErrors: 1,
+		},
+		{
 			Name:        "completed error",
 			Title:       "Go and rest",
 			Completed:   2,
@@ -69,7 +76,6 @@ func TestCreateTodo(t *testing.T) {
 				t.Fatalf("Body was not created %v", err)
 			}
 			bodyBuffer := bytes.NewBuffer(b)
-			fmt.Println(bodyBuffer)
 			req, err := http.NewRequest("POST", "/api/v1/todos", bodyBuffer)
 			if err != nil {
 				t.Fatalf("Request was not created %v", err)
