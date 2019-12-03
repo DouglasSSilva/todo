@@ -9,7 +9,6 @@ import (
 // FetchAllTodo fetch all todos
 func FetchAllTodo(c *gin.Context) {
 	var todos []TodoModel
-	var _todos []TransformedTodo
 
 	db.Find(&todos)
 
@@ -18,17 +17,7 @@ func FetchAllTodo(c *gin.Context) {
 		return
 	}
 
-	//transforms the todos for building a good response
-	for _, item := range todos {
-		completed := false
-		if item.Completed == 1 {
-			completed = true
-		} else {
-			completed = false
-		}
-		_todos = append(_todos, TransformedTodo{ID: item.ID, Title: item.Title, Completed: completed})
-	}
-	c.JSON(http.StatusOK, gin.H{"status": http.StatusOK, "data": _todos})
+	c.JSON(http.StatusOK, todos)
 }
 
 // FetchSingleTodo fetch a single todo
@@ -43,13 +32,5 @@ func FetchSingleTodo(c *gin.Context) {
 		return
 	}
 
-	completed := false
-	if todo.Completed == 1 {
-		completed = true
-	} else {
-		completed = false
-	}
-
-	_todo := TransformedTodo{ID: todo.ID, Title: todo.Title, Completed: completed}
-	c.JSON(http.StatusOK, gin.H{"status": http.StatusOK, "data": _todo})
+	c.JSON(http.StatusOK, todo)
 }

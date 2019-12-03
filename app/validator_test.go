@@ -12,14 +12,13 @@ func TestValidator(t *testing.T) {
 	tt := []struct {
 		name      string
 		title     string
-		completed int
+		completed bool
 		err       int
 	}{
-		{"title error", "a", 1, 1},
-		{"not completed", "Titulo", 0, 0},
-		{"completed error", "Titulo", 2, 1},
-		{"title and completed error", "ab", 2, 2},
-		{"completed", "Titulo do que fazer", 1, 0},
+		{"title error - small", "a", true, 1},
+		{"not completed", "Titulo", false, 0},
+		{"title error big ", "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.", false, 1},
+		{"completed", "Titulo do que fazer", true, 0},
 	}
 
 	for i, tc := range tt {

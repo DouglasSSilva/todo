@@ -8,8 +8,9 @@ import (
 	"os"
 )
 
-//ErrorToReturn implements the field and motive of error
-type ErrorToReturn struct {
+//ErrorMsgs implements the field and motive of error
+// will be used on every return of error
+type ErrorMsgs struct {
 	Field  string `json:"field"`
 	Motive string `json:"motive"`
 }

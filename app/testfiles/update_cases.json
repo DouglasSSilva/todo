@@ -1,0 +1,49 @@
+[{
+    "ID": 1,
+    "name": "working finished case",
+    "title": "Todo create test",
+    "completed": true,
+    "status": 200,
+    "totalErrors": 0
+},
+{
+    "ID": 2,
+    "name": "working unfinished case",
+    "title": "Todo update test",
+    "completed": true,
+    "status": 200,
+    "totalErrors": 0
+},
+{
+    "ID": 3,
+    "name": "chars error - low",
+    "title": "Go",
+    "completed": false,
+    "status": 500,
+    "totalErrors": 1
+},
+{
+    "ID": 4,
+    "name": "chars error - high",
+    "title": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+    "completed": true,
+    "status": 500,
+    "totalErrors": 1
+},
+{
+    "ID": 5,
+    "name": "empty error",
+    "title": "",
+    "completed": false,
+    "status": 500,
+    "totalErrors": 2
+},
+{
+    "ID": 150000,
+    "name": "No one to update",
+    "title": "Try something new",
+    "completed": false,
+    "status": 404,
+    "totalErrors": 1
+}
+]

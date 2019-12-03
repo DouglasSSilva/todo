@@ -9,12 +9,15 @@ var db *gorm.DB
 
 // TodoModel struct to be inserted on db
 type TodoModel struct {
-	ID        uint   `db:"id" json:"ID"`
-	Title     string `db:"title" json:"title"`
-	Completed bool   `db:"completed" json:"completed"`
-}
+	// ID of the inserted todo
+	ID uint `db:"id" json:"ID"`
 
-//TransformedTodo to be returned on get, will be removed
+	// Title defines the name of the to do to be inserted
+	Title string `db:"title" json:"title"`
+
+	// Completed  will be inserted on the db a true value tell the todo is finished
+	Completed bool `db:"completed" json:"completed"`
+}
 
 func init() {
 	//open a db connection

@@ -1,42 +1,35 @@
 [{
         "name": "working finished case",
         "title": "Todo create test",
-        "completed": 1,
+        "completed": true,
         "status": 201,
         "totalErrors": 0
     },
     {
         "name": "working unfinished case",
         "title": "Todo update test",
-        "completed": 0,
+        "completed": true,
         "status": 201,
         "totalErrors": 0
     },
     {
-        "name": "chars error",
+        "name": "chars error - low",
         "title": "Go",
-        "completed": 0,
+        "completed": false,
+        "status": 500,
+        "totalErrors": 1
+    },
+    {
+        "name": "chars error - high",
+        "title": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+        "completed": true,
         "status": 500,
         "totalErrors": 1
     },
     {
         "name": "empty error",
         "title": "",
-        "completed": 0,
-        "status": 500,
-        "totalErrors": 2
-    },
-    {
-        "name": "completed error",
-        "title": "Go and rest",
-        "completed": 2,
-        "status": 500,
-        "totalErrors": 1
-    },
-    {
-        "name": "all - chars and completed error",
-        "title": "Go",
-        "completed": 2,
+        "completed": false,
         "status": 500,
         "totalErrors": 2
     }
