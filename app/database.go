@@ -7,17 +7,14 @@ import (
 
 var db *gorm.DB
 
+// TodoModel struct to be inserted on db
 type TodoModel struct {
 	ID        uint   `db:"id" json:"ID"`
 	Title     string `db:"title" json:"title"`
-	Completed int    `db:"completed" json:"completed"`
-}
-
-type TransformedTodo struct {
-	ID        uint   `db:"id" json:"id"`
-	Title     string `db:"title" json:"title"`
 	Completed bool   `db:"completed" json:"completed"`
 }
+
+//TransformedTodo to be returned on get, will be removed
 
 func init() {
 	//open a db connection
