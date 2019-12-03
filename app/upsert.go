@@ -14,11 +14,12 @@ func CreateTodo(c *gin.Context) {
 
 	err := todo.Validate()
 	if len(err) != 0 {
-		c.JSON(http.StatusInternalServerError, gin.H{"status": http.StatusInternalServerError, "Error": err})
+		c.JSON(http.StatusInternalServerError, err)
 		return
 	}
 	db.Save(&todo)
-	c.JSON(http.StatusCreated, gin.H{"status": http.StatusCreated, "message": "Todo item created successfully!", "resourceId": todo.ID})
+	c.JSON(http.StatusCreated, todo)
+
 }
 
 // UpdateTodo update a todo

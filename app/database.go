@@ -8,7 +8,7 @@ import (
 var db *gorm.DB
 
 type TodoModel struct {
-	gorm.Model
+	ID        uint   `db:"id" json:"ID"`
 	Title     string `db:"title" json:"title"`
 	Completed int    `db:"completed" json:"completed"`
 }

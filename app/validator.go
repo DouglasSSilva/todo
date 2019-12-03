@@ -1,21 +1,30 @@
 package app
 
-import "net/url"
+import "todo/commons"
 
 // Validate a tTodoModel based on some rules
-func (t *TodoModel) Validate() url.Values {
-	errs := url.Values{}
+func (t *TodoModel) Validate() []commons.ErrorToReturn {
+	errs := []commons.ErrorToReturn{}
 
 	if t.Title == "" {
-		errs.Add("title", "The title field is required")
+		errs = append(errs, commons.ErrorToReturn{
+			Field:  "title",
+			Motive: "The title field is required",
+		})
 	}
 
 	if len(t.Title) < 3 || len(t.Title) > 250 {
-		errs.Add("title", "The title field must be between 3 - 250 chars")
+		errs = append(errs, commons.ErrorToReturn{
+			Field:  "title",
+			Motive: "The title field must be between 3 - 250 chars",
+		})
 	}
 
 	if t.Completed < 0 || t.Completed > 1 {
-		errs.Add("completed", "The completed value can not be recognized")
+		errs = append(errs, commons.ErrorToReturn{
+			Field:  "completed",
+			Motive: "The completed value can not be recognized",
+		})
 	}
 
 	return errs
