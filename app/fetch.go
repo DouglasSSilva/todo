@@ -1,7 +1,9 @@
 package app
 
 import (
+	"fmt"
 	"net/http"
+	"todo/commons"
 
 	"github.com/gin-gonic/gin"
 )
@@ -13,7 +15,12 @@ func FetchAllTodo(c *gin.Context) {
 	db.Find(&todos)
 
 	if len(todos) <= 0 {
-		c.JSON(http.StatusNotFound, gin.H{"status": http.StatusNotFound, "message": "No todo found!"})
+		errs := []commons.ErrorMsgs{}
+		errs = append(errs, commons.ErrorMsgs{
+			Field:  "Todo",
+			Motive: "Not Found"})
+		fmt.Println(errs)
+		c.JSON(http.StatusNotFound, errs)
 		return
 	}
 
@@ -28,7 +35,12 @@ func FetchSingleTodo(c *gin.Context) {
 	db.First(&todo, todoID)
 
 	if todo.ID == 0 {
-		c.JSON(http.StatusNotFound, gin.H{"status": http.StatusNotFound, "message": "No todo found!"})
+		errs := []commons.ErrorMsgs{}
+		errs = append(errs, commons.ErrorMsgs{
+			Field:  "Todo",
+			Motive: "Not Found"})
+
+		c.JSON(http.StatusNotFound, errs)
 		return
 	}
 
